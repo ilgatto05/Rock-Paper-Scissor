@@ -17,17 +17,26 @@ function computerPlay(){
 }
 
 
-function playerPlay(eleccionMin){
-    eleccion=eleccionMin.toLowerCase();
-    return eleccion;
+function playerPlay(){
+    let eleccion=prompt("ingresa tu elección:");
+    eleccion=eleccion.toLowerCase();
+    console.log(eleccion);
+    let elements=['paper', 'rock', 'scissor'];
+    if(!(elements.includes(eleccion))){
+        alert('ingrese una opcion valida');
+        eleccion=playerPlay();
+        return eleccion;
+    }else{
+    return eleccion;}
 }
+
 
 function ganador(quienGano, eleccionComp, eleccionPlayer){
     if(quienGano==='computer'){
-    alert(`${quienGano} gana, ${eleccionComp} vence a ${eleccionPlayer}`)
+    console.log(`${quienGano} gana, ${eleccionComp} vence a ${eleccionPlayer}`)
     }
     else{
-        alert(`${quienGano} gana, ${eleccionPlayer} vence a ${eleccionComp}`)
+        console.log(`${quienGano} gana, ${eleccionPlayer} vence a ${eleccionComp}`)
     }
 }
 
@@ -37,12 +46,15 @@ function competencia(computer, player){
         winner='computer';
         ganador(winner, computer, player);//llamada a la funcion que imprime quien gana
     }
+    else if((computer==='rock'&& player==='rock')||(computer==='scissor' && player==='scissor')||(computer==='paper' && player==='paper')){
+        console.log('empate')//else if checks if the results are the same for player and computer
+    }
     else{
+        winner='player';
         ganador(winner, computer, player)
     }
 }
 
-let eleccion=prompt("ingresa tu elección:");
-playerPlay(eleccion);
+competencia(computerPlay(), playerPlay())
 </script>
 </html>
